@@ -1,25 +1,19 @@
-import { interpolate, useCurrentFrame } from "remotion";
-import { COLOR_1, FONT_FAMILY } from "./constants";
-
-const subtitle = {
-  fontFamily: FONT_FAMILY,
-  fontSize: 40,
-  textAlign: "center",
-  position: "absolute",
-  bottom: 140,
-  width: "100%",
-};
-
-const codeStyle = {
-  color: COLOR_1,
-};
+import { interpolate, useCurrentFrame, AbsoluteFill } from "remotion";
 
 export const Subtitle = () => {
   const frame = useCurrentFrame();
-  const opacity = interpolate(frame, [0, 30], [0, 1]);
+  const opacity = interpolate(frame, [0, 20], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
   return (
-    <div style={{ ...subtitle, opacity }}>
-      Edit <code style={codeStyle}>src/Root.jsx</code> and save to reload.
-    </div>
+    <AbsoluteFill className="justify-center items-center">
+      <div
+        className="text-3xl md:text-4xl lg:text-5xl font-light tracking-widest text-blue-200 mt-40"
+        style={{ opacity }}
+      >
+        L'ecosistema dell'innovazione
+      </div>
+    </AbsoluteFill>
   );
 };

@@ -1,62 +1,42 @@
 import {
   AbsoluteFill,
-  interpolate,
   Sequence,
-  spring,
-  useCurrentFrame,
-  useVideoConfig,
+  Audio,
+  staticFile,
 } from "remotion";
-import { Logo } from "./Logo";
-import { Subtitle } from "./Subtitle";
 import { Title } from "./Title";
+import { Subtitle } from "./Subtitle";
+import { PulsingGraphic } from "./PulsingGraphic";
+import { FinalScene } from "./FinalScene";
 
 export const HelloWorld = ({ titleText, titleColor }) => {
-  const frame = useCurrentFrame();
-  const { durationInFrames, fps } = useVideoConfig();
-
-  // Animate from 0 to 1 after 25 frames
-  const logoTranslationProgress = spring({
-    frame: frame - 25,
-    fps,
-    config: {
-      damping: 100,
-    },
-  });
-
-  // Move the logo up by 150 pixels once the transition starts
-  const logoTranslation = interpolate(
-    logoTranslationProgress,
-    [0, 1],
-    [0, -150],
-  );
-
-  // Fade out the animation at the end
-  const opacity = interpolate(
-    frame,
-    [durationInFrames - 25, durationInFrames - 15],
-    [1, 0],
-    {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
-
-  // A <AbsoluteFill> is just a absolutely positioned <div>!
   return (
-    <AbsoluteFill style={{ backgroundColor: "white" }}>
-      <AbsoluteFill style={{ opacity }}>
-        <AbsoluteFill style={{ transform: `translateY(${logoTranslation}px)` }}>
-          <Logo />
-        </AbsoluteFill>
-        {/* Sequences can shift the time for its children! */}
-        <Sequence from={35}>
-          <Title titleText={titleText} titleColor={titleColor} />
-        </Sequence>
-        {/* The subtitle will only enter on the 75th frame. */}
-        <Sequence from={75}>
-          <Subtitle />
-        </Sequence>
-      </AbsoluteFill>
+    <AbsoluteFill
+      style={{
+        background: "radial-gradient(circle, #1a2a6c, #112240, #0a192f)",
+      }}
+    >
+      <Audio src={staticFile("thx_intro.wav")} />
+
+      {/* Background Graphic Element */}
+      <Sequence from={0} durationInFrames={200}>
+        <PulsingGraphic />
+      </Sequence>
+
+      {/* Title with spring animation */}
+      <Sequence from={10} durationInFrames={190}>
+        <Title titleText={titleText} titleColor={titleColor} />
+      </Sequence>
+
+      {/* Subtitle enters 20 frames after Title (10 + 20 = 30) */}
+      <Sequence from={30} durationInFrames={170}>
+        <Subtitle />
+      </Sequence>
+
+      {/* Final scene scaling up the URL */}
+      <Sequence from={180}>
+        <FinalScene />
+      </Sequence>
     </AbsoluteFill>
   );
 };

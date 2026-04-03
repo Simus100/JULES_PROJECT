@@ -13,15 +13,15 @@ export const RemotionRoot = () => {
         // npx remotion render HelloWorld
         id="HelloWorld"
         component={HelloWorld}
-        durationInFrames={150}
+        durationInFrames={250}
         fps={30}
         width={1920}
         height={1080}
         // You can override these props for each render:
         // https://www.remotion.dev/docs/parametrized-rendering
         defaultProps={{
-          titleText: "Welcome to Remotion",
-          titleColor: "black",
+          titleText: "NEXUS UNIVERSALIS",
+          titleColor: "white",
         }}
       />
       {/* Mount any React component to make it show up in the sidebar and work on it individually! */}
