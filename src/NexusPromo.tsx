@@ -6,6 +6,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
   interpolate,
+  Audio,
+  staticFile,
 } from 'remotion';
 
 const Background: React.FC = () => {
@@ -183,12 +185,10 @@ export const NexusPromo: React.FC = () => {
       </Sequence>
 
       <Sequence from={540} durationInFrames={180}>
-        <Message text="Static-first" subText="Automazione solo quando serve davvero." />
-      </Sequence>
-
-      <Sequence from={720} durationInFrames={180}>
         <CTA />
       </Sequence>
+
+      <Audio src={staticFile("background.mp3")} volume={0.5} />
 
     </AbsoluteFill>
   );

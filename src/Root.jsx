@@ -37,7 +37,7 @@ export const RemotionRoot = () => {
       <Composition
         id="NexusPromo"
         component={NexusPromo}
-        durationInFrames={900}
+        durationInFrames={720}
         fps={30}
         width={1920}
         height={1080}
