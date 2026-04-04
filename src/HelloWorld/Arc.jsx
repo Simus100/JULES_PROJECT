@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { random, useVideoConfig } from "remotion";
+import { useId } from "react";
+import { useVideoConfig } from "remotion";
 import { COLOR_1, COLOR_2 } from "./constants";
 
 const getCircumferenceOfArc = (rx, ry) => {
@@ -17,7 +17,7 @@ export const Arc = ({ progress, rotation, rotateProgress }) => {
   const { width, height } = useVideoConfig();
 
   // Each svg Id must be unique to not conflict with each other
-  const [gradientId] = useState(() => String(random(null)));
+  const gradientId = useId();
 
   return (
     <svg

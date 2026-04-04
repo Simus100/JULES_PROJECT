@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { FONT_FAMILY } from "./constants";
 
@@ -21,7 +22,10 @@ export const Title = ({ titleText, titleColor }) => {
   const videoConfig = useVideoConfig();
   const frame = useCurrentFrame();
 
-  const words = titleText.split(" ");
+  // ⚡ Bolt Performance Optimization:
+  // Remotion re-renders on every frame. Memoizing this prevents unnecessary
+  // string splitting 30-60 times a second, saving CPU cycles on the hot render loop.
+  const words = useMemo(() => titleText.split(" "), [titleText]);
 
   return (
     <h1 style={title}>
