@@ -2,6 +2,7 @@ import "./index.css";
 import { Composition } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
+import { NexusPromo } from "./NexusPromo";
 
 // Each <Composition> is an entry in the sidebar!
 
@@ -29,6 +30,14 @@ export const RemotionRoot = () => {
         id="OnlyLogo"
         component={Logo}
         durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="NexusPromo"
+        component={NexusPromo}
+        durationInFrames={900}
         fps={30}
         width={1920}
         height={1080}
