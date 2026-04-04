@@ -6,18 +6,29 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@react-three/fiber": "^9.5.0",
     "@remotion/cli": "4.0.443",
+    "@remotion/lottie": "^4.0.443",
+    "@remotion/media-utils": "^4.0.443",
+    "@remotion/noise": "^4.0.443",
+    "@remotion/paths": "^4.0.443",
+    "@remotion/tailwind-v4": "4.0.443",
+    "@remotion/three": "^4.0.443",
+    "axios": "^1.14.0",
+    "d3": "^7.9.0",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^1.7.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remotion": "4.0.443",
-    "zod": "4.3.6",
-    "@remotion/tailwind-v4": "4.0.443",
-    "tailwindcss": "4.0.0"
+    "tailwindcss": "4.0.0",
+    "three": "^0.183.2",
+    "zod": "4.3.6"
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.443",
-    "prettier": "3.8.1",
-    "eslint": "9.19.0"
+    "eslint": "9.19.0",
+    "prettier": "3.8.1"
   },
   "scripts": {
     "dev": "remotion studio",
