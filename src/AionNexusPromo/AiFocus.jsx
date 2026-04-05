@@ -1,24 +1,34 @@
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, spring } from "remotion";
 import { loadFont } from "@remotion/google-fonts/Inter";
 import { useMemo } from "react";
+import { DynamicBackground } from "./DynamicBackground";
 
 const { fontFamily } = loadFont();
 
 export const AiFocus = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width } = useVideoConfig();
+  const isVertical = width < 1200;
 
-  // Reveal effect for text (typewriter simulation via mask)
-  const revealProgress = interpolate(frame, [15, 60], [0, 100], {
+  // Faster reveal
+  const revealProgress = interpolate(frame, [10, 40], [0, 100], {
     extrapolateRight: "clamp",
   });
 
-  const fadeOutOpacity = interpolate(frame, [270, 300], [1, 0], {
+  const fadeOutOpacity = interpolate(frame, [250, 280], [1, 0], {
     extrapolateRight: "clamp",
   });
 
-  // Rotation for the abstract "AI core" shape
-  const rotation = frame * 2;
+  // Fast, complex rotations for the core
+  const rot1 = frame * 4;
+  const rot2 = -frame * 6;
+  const rot3 = frame * 8;
+
+  const coreScale = spring({
+    frame: frame - 5,
+    fps,
+    config: { damping: 10 },
+  });
 
   const style = useMemo(() => {
     return {
@@ -28,43 +38,74 @@ export const AiFocus = () => {
   }, [fontFamily, fadeOutOpacity]);
 
   return (
-    <AbsoluteFill className="bg-zinc-950 items-center justify-center text-white" style={style}>
+    <AbsoluteFill style={style}>
+      <DynamicBackground />
 
-      {/* Abstract AI Core Graphic */}
-      <div className="relative flex items-center justify-center mb-16">
-        <div
-          className="absolute w-64 h-64 border-4 border-blue-500 rounded-full opacity-30"
-          style={{ transform: `rotate(${rotation}deg) scale(1.1)` }}
-        />
-        <div
-          className="absolute w-48 h-48 border-4 border-cyan-400 rounded-full border-dashed opacity-50"
-          style={{ transform: `rotate(${-rotation * 1.5}deg)` }}
-        />
-        <div className="w-32 h-32 bg-gradient-to-tr from-blue-600 to-cyan-300 rounded-full blur-xl opacity-80 animate-pulse" />
-      </div>
+      <AbsoluteFill className={`items-center justify-center text-white z-10 ${isVertical ? 'flex-col' : 'flex-row gap-24'} px-12`}>
 
-      <div className="text-5xl md:text-6xl font-bold text-center leading-tight max-w-4xl relative overflow-hidden px-4">
+        {/* Abstract AI Core Graphic - Now much more complex */}
         <div
-          style={{
-            clipPath: `inset(0 ${100 - revealProgress}% 0 0)`
-          }}
+          className="relative flex items-center justify-center shrink-0"
+          style={{ transform: `scale(${coreScale})`, marginBottom: isVertical ? '60px' : '0' }}
         >
-          <span className="text-cyan-400">AI FULLY BACKED</span>
-          <br />
-          Un flusso editoriale completamente gestito da Intelligenza Artificiale.
+          {/* Rings */}
+          <div className="absolute w-[400px] h-[400px] border-[1px] border-blue-500/20 rounded-full" />
+          <div
+            className="absolute w-[350px] h-[350px] border-8 border-t-blue-500 border-r-transparent border-b-cyan-400 border-l-transparent rounded-full opacity-80"
+            style={{ transform: `rotate(${rot1}deg)` }}
+          />
+          <div
+            className="absolute w-[280px] h-[280px] border-4 border-dashed border-cyan-300 rounded-full opacity-60"
+            style={{ transform: `rotate(${rot2}deg)` }}
+          />
+          <div
+            className="absolute w-[200px] h-[200px] border-[12px] border-t-white border-r-white/10 border-b-white/10 border-l-white/10 rounded-full mix-blend-screen"
+            style={{ transform: `rotate(${rot3}deg)` }}
+          />
+          {/* Glowing Center */}
+          <div className="w-[120px] h-[120px] bg-white rounded-full shadow-[0_0_100px_rgba(34,211,238,1)] animate-pulse" />
+
+          {/* Floating Data particles around the core */}
+          {Array.from({length: 8}).map((_, i) => {
+            const angle = (i * 45) + frame;
+            const radius = 250 + Math.sin(frame/10 + i)*20;
+            const x = Math.cos(angle * Math.PI / 180) * radius;
+            const y = Math.sin(angle * Math.PI / 180) * radius;
+            return (
+              <div
+                key={i}
+                className="absolute w-2 h-2 bg-cyan-400 rounded-full"
+                style={{ transform: `translate(${x}px, ${y}px)` }}
+              />
+            )
+          })}
         </div>
 
-        {/* Blinking cursor */}
-        <div
-          className="absolute h-16 w-1 bg-white top-0"
-          style={{
-            left: `${revealProgress}%`,
-            opacity: frame % 15 < 7 ? 1 : 0,
-            display: revealProgress === 100 ? "none" : "block"
-          }}
-        />
-      </div>
+        <div className={`${isVertical ? 'text-5xl text-center' : 'text-7xl text-left'} font-black leading-tight max-w-3xl relative overflow-hidden`}>
+          <div
+            style={{
+              clipPath: `inset(0 ${100 - revealProgress}% 0 0)`
+            }}
+          >
+            <span className="text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">AI FULLY BACKED</span>
+            <br />
+            <span className="text-white mt-4 block">
+              Un flusso editoriale completamente gestito da Intelligenza Artificiale.
+            </span>
+          </div>
 
+          {/* Hardware cursor */}
+          <div
+            className="absolute h-[1em] w-4 bg-cyan-400 top-0 mix-blend-screen"
+            style={{
+              left: `${revealProgress}%`,
+              opacity: frame % 10 < 5 ? 1 : 0,
+              display: revealProgress === 100 ? "none" : "block"
+            }}
+          />
+        </div>
+
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };

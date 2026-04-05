@@ -1,22 +1,27 @@
 import { AbsoluteFill, interpolate, useCurrentFrame, spring, useVideoConfig } from "remotion";
 import { loadFont } from "@remotion/google-fonts/Inter";
 import { useMemo } from "react";
+import { DynamicBackground } from "./DynamicBackground";
 
 const { fontFamily } = loadFont();
 
 export const Outro = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width } = useVideoConfig();
+  const isVertical = width < 1200;
 
-  const fadeIn = interpolate(frame, [0, 30], [0, 1], {
+  const fadeIn = interpolate(frame, [0, 15], [0, 1], {
     extrapolateRight: "clamp",
   });
 
   const urlScale = spring({
-    frame: frame - 45,
+    frame: frame - 15,
     fps,
-    config: { damping: 12 },
+    config: { damping: 12, mass: 1.5 },
   });
+
+  // Continuous pulse
+  const pulse = 1 + Math.sin(frame / 5) * 0.05;
 
   const style = useMemo(() => {
     return {
@@ -26,23 +31,30 @@ export const Outro = () => {
   }, [fontFamily, fadeIn]);
 
   return (
-    <AbsoluteFill className="bg-zinc-950 items-center justify-center text-white flex-col" style={style}>
-      <h2 className="text-5xl md:text-7xl font-black mb-8 text-center text-zinc-100 tracking-tight">
-        Scopri il futuro <br/> dell'informazione.
-      </h2>
+    <AbsoluteFill style={style}>
+      <DynamicBackground />
 
-      <div
-        style={{ transform: `scale(${urlScale})` }}
-        className="mt-8 bg-blue-600 px-10 py-6 rounded-2xl shadow-[0_0_40px_rgba(37,99,235,0.4)]"
-      >
-        <span className="text-4xl md:text-5xl font-mono font-bold text-white tracking-wider">
-          nexus.universalis.it
-        </span>
-      </div>
+      {/* Intense light ray effect from bottom */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-t from-blue-600/30 to-transparent mix-blend-screen pointer-events-none" />
 
-      <div className="absolute bottom-12 text-zinc-500 font-medium tracking-widest uppercase text-sm">
-        Powered by Universalis Produzioni
-      </div>
+      <AbsoluteFill className="items-center justify-center text-white flex-col z-10 px-8">
+        <h2 className={`${isVertical ? 'text-6xl' : 'text-8xl'} font-black mb-12 text-center text-white tracking-tighter drop-shadow-2xl`}>
+          Scopri il futuro <br/> <span className="text-zinc-400">dell'informazione.</span>
+        </h2>
+
+        <div
+          style={{ transform: `scale(${urlScale * pulse})` }}
+          className="mt-8 bg-white px-12 py-8 rounded-3xl shadow-[0_0_80px_rgba(255,255,255,0.4)]"
+        >
+          <span className={`${isVertical ? 'text-4xl' : 'text-6xl'} font-black text-black tracking-tight`}>
+            nexus.universalis.it
+          </span>
+        </div>
+
+        <div className="absolute bottom-16 text-zinc-400 font-bold tracking-[0.5em] uppercase text-sm md:text-xl">
+          Powered by Universalis Produzioni
+        </div>
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };
