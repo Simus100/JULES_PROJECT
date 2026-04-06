@@ -1,0 +1,3 @@
+## 2024-05-24 - Remotion Hot Render Loop
+**Learning:** Remotion evaluates components on every single frame. Deriving state (e.g. `titleText.split(" ")`) or initializing state directly within the component body can cause costly, repeated object allocation on every frame, which impacts rendering performance significantly. Using `useId()` inside a hot render loop is also much more efficient than using a `useState` hook combined with a random string generator for element IDs like SVG gradients.
+**Action:** Always memoize derived arrays or objects using `useMemo()` inside Remotion components to prevent new allocations per frame. Use React's built-in `useId()` instead of random generators and `useState` for static identifiers in Remotion elements.

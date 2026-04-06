@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { random, useVideoConfig } from "remotion";
+import { useId } from "react";
+import { useVideoConfig } from "remotion";
 import { COLOR_1, COLOR_2 } from "./constants";
 
 export const Atom = ({ scale }) => {
   const config = useVideoConfig();
 
-  // Each SVG ID must be unique to not conflict with each other
-  const [gradientId] = useState(() => String(random(null)));
+  // ⚡ Bolt: Use built-in useId instead of state with random string generation for better performance
+  const gradientId = useId();
 
   return (
     <svg
