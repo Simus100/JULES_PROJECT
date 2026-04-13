@@ -12,7 +12,7 @@ export const RemotionRoot = () => {
       <Composition
         id="UniversalisPromo"
         component={UniversalisPromo}
-        durationInFrames={1210}
+        durationInFrames={1085}
         fps={30}
         width={1920}
         height={1080}

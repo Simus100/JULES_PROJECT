@@ -17,47 +17,47 @@ export const UniversalisPromo = () => {
       <Audio src={staticFile("audio.mp3")} volume={0.8} />
 
       <TransitionSeries>
-        {/* Scene 1: Epic Intro - 7 seconds (210 frames) */}
-        <TransitionSeries.Sequence durationInFrames={210}>
+        {/* Scene 1: Epic Intro - 8 seconds (240 frames), aligned with an 8-bar musical intro */}
+        <TransitionSeries.Sequence durationInFrames={240}>
           <Scene1 />
         </TransitionSeries.Sequence>
 
         <TransitionSeries.Transition
           presentation={fade()}
-          timing={springTiming({ config: { damping: 14 }, durationInFrames: 25 })}
+          timing={springTiming({ config: { damping: 12, mass: 0.5 }, durationInFrames: 15 })}
         />
 
-        {/* Scene 2: Services Showcase - 10 seconds (300 frames) */}
-        <TransitionSeries.Sequence durationInFrames={300}>
+        {/* Scene 2: Services Showcase - ~7.5 seconds (225 frames), drops on the beat */}
+        <TransitionSeries.Sequence durationInFrames={225}>
           <Scene2 />
         </TransitionSeries.Sequence>
 
         <TransitionSeries.Transition
           presentation={slide({ direction: "from-right" })}
-          timing={springTiming({ config: { damping: 14 }, durationInFrames: 25 })}
+          timing={springTiming({ config: { damping: 14, mass: 0.8 }, durationInFrames: 20 })}
         />
 
-        {/* Scene 3: The Process - 10 seconds (300 frames) */}
-        <TransitionSeries.Sequence durationInFrames={300}>
+        {/* Scene 3: The Process - ~7.5 seconds (225 frames) */}
+        <TransitionSeries.Sequence durationInFrames={225}>
           <Scene3 />
         </TransitionSeries.Sequence>
 
         <TransitionSeries.Transition
           presentation={slide({ direction: "from-bottom" })}
-          timing={springTiming({ config: { damping: 14 }, durationInFrames: 25 })}
+          timing={springTiming({ config: { damping: 14, mass: 0.8 }, durationInFrames: 20 })}
         />
 
-        {/* Scene 4: "Why Choose Us?" - 8 seconds (240 frames) */}
-        <TransitionSeries.Sequence durationInFrames={240}>
+        {/* Scene 4: "Why Choose Us?" - ~7.5 seconds (225 frames) */}
+        <TransitionSeries.Sequence durationInFrames={225}>
           <Scene4 />
         </TransitionSeries.Sequence>
 
         <TransitionSeries.Transition
           presentation={fade()}
-          timing={springTiming({ config: { damping: 14 }, durationInFrames: 25 })}
+          timing={springTiming({ config: { damping: 12, mass: 0.5 }, durationInFrames: 15 })}
         />
 
-        {/* Scene 5: Outro/CTA - 8 seconds (240 frames) */}
+        {/* Scene 5: Outro/CTA - 8 seconds (240 frames), fading out */}
         <TransitionSeries.Sequence durationInFrames={240}>
           <Scene5 />
         </TransitionSeries.Sequence>

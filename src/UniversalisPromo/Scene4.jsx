@@ -7,10 +7,17 @@ const Stat = ({ number, text, delay }) => {
   const scale = spring({
     frame: frame - delay,
     fps,
-    config: { damping: 10 },
+    config: { damping: 12 },
   });
 
-  const numValue = Math.floor(interpolate(scale, [0, 1], [0, parseInt(number)]));
+  const progress = spring({
+    frame: frame - delay - 10,
+    fps,
+    config: { damping: 200, mass: 2 },
+  });
+
+  const targetValue = parseInt(number);
+  const numValue = Math.floor(interpolate(progress, [0, 1], [0, targetValue]));
 
   return (
     <div
