@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { FONT_FAMILY } from "./constants";
 
@@ -21,7 +22,10 @@ export const Title = ({ titleText, titleColor }) => {
   const videoConfig = useVideoConfig();
   const frame = useCurrentFrame();
 
-  const words = titleText.split(" ");
+  // ⚡ Bolt: Memoize the derived array so we don't re-allocate
+  // `words` array strings 30+ times per second in the hot render loop.
+  // Impact: Reduced garbage collection pauses and memory churn per frame.
+  const words = useMemo(() => titleText.split(" "), [titleText]);
 
   return (
     <h1 style={title}>

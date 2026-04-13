@@ -1,0 +1,3 @@
+## 2025-02-12 - Memoize derived data to protect hot render loops
+**Learning:** Remotion components re-render on *every single frame*. Deriving data inside the render function without memoization (like `string.split(" ")` in `Title.jsx` or re-creating unique IDs) causes unnecessary array allocations and string allocations 30-60 times a second, leading to garbage collection pressure and stuttering renders.
+**Action:** Always wrap derived data calculations that don't depend on the current `frame` inside a `useMemo` hook to protect the hot render loop. Use React's built-in `useId()` for simple unique identifiers to avoid custom random string generation overhead.
