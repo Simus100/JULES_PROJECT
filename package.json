@@ -8,6 +8,8 @@
   "dependencies": {
     "@remotion/cli": "4.0.443",
     "@remotion/google-fonts": "4.0.443",
+    "@remotion/motion-blur": "4.0.443",
+    "@remotion/noise": "4.0.443",
     "@remotion/paths": "4.0.443",
     "@remotion/shapes": "4.0.443",
     "@remotion/tailwind-v4": "4.0.443",

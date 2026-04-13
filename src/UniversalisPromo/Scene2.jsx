@@ -1,5 +1,6 @@
-import { AbsoluteFill, useCurrentFrame, useVideoConfig, spring, interpolate, Sequence } from "remotion";
+import { AbsoluteFill, useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { Monitor, Rocket, Search, PenTool } from "lucide-react";
+import { Trail } from "@remotion/motion-blur";
 
 const ServiceItem = ({ icon: Icon, title, desc, delay }) => {
   const frame = useCurrentFrame();
@@ -43,32 +44,34 @@ export const Scene2 = () => {
         I Nostri Servizi
       </h2>
 
-      <div className="grid grid-cols-2 gap-12 max-w-6xl mx-auto w-full">
-        <ServiceItem
-          icon={Monitor}
-          title="Web Design"
-          desc="Siti web moderni e performanti"
-          delay={30}
-        />
-        <ServiceItem
-          icon={Rocket}
-          title="Digital Marketing"
-          desc="Strategie per far crescere il tuo business"
-          delay={60}
-        />
-        <ServiceItem
-          icon={Search}
-          title="SEO Optimization"
-          desc="Raggiungi le prime posizioni su Google"
-          delay={90}
-        />
-        <ServiceItem
-          icon={PenTool}
-          title="Brand Identity"
-          desc="Design che lascia il segno"
-          delay={120}
-        />
-      </div>
+      <Trail layers={5} lagInFrames={1} trailOpacity={0.6}>
+        <div className="grid grid-cols-2 gap-12 max-w-6xl mx-auto w-full">
+          <ServiceItem
+            icon={Monitor}
+            title="Web Design"
+            desc="Siti web moderni e performanti"
+            delay={30}
+          />
+          <ServiceItem
+            icon={Rocket}
+            title="Digital Marketing"
+            desc="Strategie per far crescere il tuo business"
+            delay={60}
+          />
+          <ServiceItem
+            icon={Search}
+            title="SEO Optimization"
+            desc="Raggiungi le prime posizioni su Google"
+            delay={90}
+          />
+          <ServiceItem
+            icon={PenTool}
+            title="Brand Identity"
+            desc="Design che lascia il segno"
+            delay={120}
+          />
+        </div>
+      </Trail>
     </AbsoluteFill>
   );
 };

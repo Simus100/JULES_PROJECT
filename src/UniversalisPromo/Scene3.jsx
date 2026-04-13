@@ -1,4 +1,5 @@
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
+import { Trail } from "@remotion/motion-blur";
 import { CheckCircle2 } from "lucide-react";
 
 const Step = ({ num, title, desc, delay }) => {
@@ -38,12 +39,14 @@ export const Scene3 = () => {
           Il Nostro Metodo
         </h2>
 
-        <div className="flex flex-col gap-12">
-          <Step num="1" title="Analisi" desc="Studiamo il tuo mercato e i competitor" delay={30} />
-          <Step num="2" title="Strategia" desc="Pianifichiamo ogni singola mossa" delay={60} />
-          <Step num="3" title="Sviluppo" desc="Creiamo la tua identità digitale" delay={90} />
-          <Step num="4" title="Lancio" desc="Portiamo il tuo progetto al successo" delay={120} />
-        </div>
+        <Trail layers={5} lagInFrames={1} trailOpacity={0.5}>
+          <div className="flex flex-col gap-12">
+            <Step num="1" title="Analisi" desc="Studiamo il tuo mercato e i competitor" delay={30} />
+            <Step num="2" title="Strategia" desc="Pianifichiamo ogni singola mossa" delay={60} />
+            <Step num="3" title="Sviluppo" desc="Creiamo la tua identità digitale" delay={90} />
+            <Step num="4" title="Lancio" desc="Portiamo il tuo progetto al successo" delay={120} />
+          </div>
+        </Trail>
       </div>
     </AbsoluteFill>
   );
