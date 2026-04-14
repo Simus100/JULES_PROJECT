@@ -23,14 +23,21 @@
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.443",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@vitejs/plugin-react": "^6.0.1",
     "eslint": "9.19.0",
-    "prettier": "3.8.1"
+    "jsdom": "^29.0.1",
+    "prettier": "3.8.1",
+    "vitest": "^4.1.2"
   },
   "scripts": {
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "vitest run"
   },
   "sideEffects": [
     "*.css"
