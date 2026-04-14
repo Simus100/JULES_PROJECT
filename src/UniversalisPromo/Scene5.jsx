@@ -54,9 +54,9 @@ export const Scene5 = () => {
         }}
       />
 
-      <div className="z-10 flex flex-col items-center max-w-5xl w-full">
+      <div className="z-10 flex flex-col items-center max-w-4xl w-full">
         <h2
-          className="text-9xl font-black mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500"
+          className="text-7xl lg:text-8xl font-black mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500"
           style={{
             transform: `scale(${titleScale}) rotateZ(${interpolate(titleScale, [0, 1], [-10, 0])}deg)`,
             opacity: titleScale,
@@ -67,25 +67,25 @@ export const Scene5 = () => {
         </h2>
 
         <p
-          className="text-4xl text-gray-400 mb-20 text-center font-light tracking-wide"
+          className="text-2xl lg:text-3xl text-gray-400 mb-12 text-center font-light tracking-wide"
           style={{ opacity: contentOpacity }}
         >
           Contattaci oggi per trasformare la tua visione in realtà.
         </p>
 
         <div
-          className="flex flex-col gap-10 w-full max-w-3xl bg-white/5 p-16 rounded-[3rem] backdrop-blur-xl border border-white/10 shadow-[0_0_50px_rgba(59,130,246,0.15)]"
+          className="flex flex-col gap-6 w-full max-w-2xl bg-white/5 p-10 rounded-[2.5rem] backdrop-blur-xl border border-white/10 shadow-[0_0_50px_rgba(59,130,246,0.15)]"
           style={{
             opacity: contentOpacity,
             transform: `translateY(${interpolate(frame, [45, 75], [100, 0], { extrapolateRight: "clamp" })}px)`
           }}
         >
-          <div className="flex items-center justify-center gap-8 text-4xl">
-            <Globe className="text-blue-400" size={56} />
+          <div className="flex items-center justify-center gap-6 text-2xl lg:text-3xl">
+            <Globe className="text-blue-400 shrink-0" size={40} />
             <span className="font-semibold text-gray-200">www.universalis.it</span>
           </div>
-          <div className="flex items-center justify-center gap-8 text-4xl mt-4">
-            <Mail className="text-purple-400" size={56} />
+          <div className="flex items-center justify-center gap-6 text-2xl lg:text-3xl">
+            <Mail className="text-purple-400 shrink-0" size={40} />
             <span className="font-semibold text-gray-200">admin@universalis.it</span>
           </div>
         </div>

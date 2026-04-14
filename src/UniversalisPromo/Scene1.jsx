@@ -41,19 +41,19 @@ export const Scene1 = () => {
         })}
       </AbsoluteFill>
 
-      <div className="z-10 flex flex-col items-center">
+      <div className="z-10 flex flex-col items-center max-w-7xl px-8 text-center">
         <h1
-          className="text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-blue-300 via-purple-500 to-pink-600 drop-shadow-2xl"
+          className="text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-blue-300 via-purple-500 to-pink-600 drop-shadow-2xl leading-tight"
           style={{
             transform: `scale(${titleScale}) rotateX(${interpolate(titleScale, [0, 1], [90, 0])}deg)`,
             opacity: titleOpacity,
             perspective: 1000,
           }}
         >
-          UNIVERSALIS PRODUZIONI
+          UNIVERSALIS<br />PRODUZIONI
         </h1>
         <p
-          className="text-4xl text-gray-200 mt-12 font-light tracking-[0.3em] uppercase drop-shadow-lg"
+          className="text-3xl lg:text-4xl text-gray-200 mt-8 font-light tracking-[0.2em] uppercase drop-shadow-lg"
           style={{
             opacity: subOpacity,
             transform: `translateY(${subY}px)`,
