@@ -16,7 +16,10 @@ const codeStyle = {
 
 export const Subtitle = () => {
   const frame = useCurrentFrame();
-  const opacity = interpolate(frame, [0, 30], [0, 1]);
+  const opacity = interpolate(frame, [0, 30], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
   return (
     <div style={{ ...subtitle, opacity }}>
       Edit <code style={codeStyle}>src/Root.jsx</code> and save to reload.
