@@ -5,8 +5,10 @@ import { UniversalisPromo } from "./UniversalisPromo/index";
 import { DirectorComposition } from "./DirectorFramework/DirectorComposition";
 import { VideoScript } from "./DirectorFramework/schema";
 import exampleScriptData from "./DirectorFramework/exampleScript.json";
+import trumpScriptData from "./DirectorFramework/trumpScript.json";
 
 const exampleScript = exampleScriptData as VideoScript;
+const trumpScript = trumpScriptData as VideoScript;
 
 const calculateTotalDuration = (script: VideoScript) => {
   return script.scenes.reduce((acc, scene) => acc + scene.durationInFrames, 0);
@@ -61,6 +63,16 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1080}
         defaultProps={{ script: exampleScript }}
+      />
+
+      <Composition
+        id="TrumpVideo"
+        component={DirectorComposition}
+        durationInFrames={calculateTotalDuration(trumpScript)}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{ script: trumpScript }}
       />
     </>
   );

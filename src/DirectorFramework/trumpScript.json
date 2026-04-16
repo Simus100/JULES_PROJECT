@@ -1,0 +1,58 @@
+{
+  "id": "trump-video",
+  "title": "Donald Trump",
+  "audioUrl": "assets/music.mp3",
+  "audioVolume": 1.0,
+  "scenes": [
+    {
+      "id": "scene-1",
+      "type": "title",
+      "durationInFrames": 120,
+      "title": "DONALD TRUMP",
+      "subtitle": "THE 45th & 47th PRESIDENT",
+      "backgroundColor": "#0a0a0a",
+      "textColor": "#ffffff",
+      "animationStyle": "scale-in"
+    },
+    {
+      "id": "scene-2",
+      "type": "media",
+      "durationInFrames": 180,
+      "transitionIn": "fade",
+      "mediaUrl": "https://images.unsplash.com/photo-1580130601254-05fa235abeab?q=80&w=1920&auto=format&fit=crop",
+      "mediaType": "image",
+      "overlayText": "MAKE AMERICA GREAT AGAIN",
+      "overlayAnimation": "fade-up"
+    },
+    {
+      "id": "scene-3",
+      "type": "media",
+      "durationInFrames": 180,
+      "transitionIn": "slide-left",
+      "mediaUrl": "https://images.unsplash.com/photo-1580130601254-05fa235abeab?q=80&w=1920&auto=format&fit=crop",
+      "mediaType": "image",
+      "overlayText": "FIGHT, FIGHT, FIGHT",
+      "overlayAnimation": "scale-in"
+    },
+    {
+      "id": "scene-4",
+      "type": "media",
+      "durationInFrames": 180,
+      "transitionIn": "fade",
+      "mediaUrl": "https://images.unsplash.com/photo-1580130601254-05fa235abeab?q=80&w=1920&auto=format&fit=crop",
+      "mediaType": "image",
+      "overlayText": "A NEW ERA",
+      "overlayAnimation": "typewriter"
+    },
+    {
+      "id": "scene-5",
+      "type": "title",
+      "durationInFrames": 150,
+      "transitionIn": "fade",
+      "title": "AMERICA FIRST",
+      "backgroundColor": "#002868",
+      "textColor": "#ffffff",
+      "animationStyle": "fade-up"
+    }
+  ]
+}
