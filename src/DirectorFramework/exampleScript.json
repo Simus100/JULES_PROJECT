@@ -1,0 +1,48 @@
+{
+  "id": "example-promo",
+  "title": "Aion Motion Promo",
+  "audioUrl": "audio.mp3",
+  "audioVolume": 0.5,
+  "scenes": [
+    {
+      "id": "scene-1",
+      "type": "title",
+      "durationInFrames": 90,
+      "title": "Benvenuto nel Director Framework",
+      "subtitle": "Generazione Video Data-Driven",
+      "backgroundColor": "#1e293b",
+      "textColor": "#ffffff",
+      "animationStyle": "fade-up"
+    },
+    {
+      "id": "scene-2",
+      "type": "media",
+      "durationInFrames": 120,
+      "transitionIn": "slide-left",
+      "mediaUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1920&auto=format&fit=crop",
+      "mediaType": "image",
+      "overlayText": "Creiamo formati dinamici",
+      "overlayAnimation": "scale-in"
+    },
+    {
+      "id": "scene-3",
+      "type": "split",
+      "durationInFrames": 120,
+      "transitionIn": "slide-up",
+      "leftText": "Codice + Direzione Artistica",
+      "rightMediaUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1080&auto=format&fit=crop",
+      "rightMediaType": "image",
+      "backgroundColor": "#0f172a"
+    },
+    {
+      "id": "scene-4",
+      "type": "title",
+      "durationInFrames": 90,
+      "transitionIn": "fade",
+      "title": "Pronto per il mercato.",
+      "backgroundColor": "#000000",
+      "textColor": "#38bdf8",
+      "animationStyle": "typewriter"
+    }
+  ]
+}
